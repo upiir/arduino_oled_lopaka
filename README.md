@@ -35,6 +35,14 @@ This video is sponsored by PCBWay - if you use this link, you can get 10 PCBs fo
 ![THUMB_arduino_oled_no_coding](https://github.com/upiir/arduino_oled_lopaka/assets/117754156/00af109e-3cc1-4592-b6d7-b5202a704bd7)
 
 
+Small Animation:
+
+![Uploading arduino_oled_lopaka_animation.gif…]()
+
+
+
+
+
 Screenshots from the video:
 
 
