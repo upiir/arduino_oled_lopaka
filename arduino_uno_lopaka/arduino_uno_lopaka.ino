@@ -6,6 +6,7 @@
 // More videos with Arduino UNO and OLED screens: https://www.youtube.com/playlist?list=PLjQRaMdk7pBZ1UV3IL5ol8Qc7R9k-kwXA
 
 // Links from the video:
+// Lopaka editor: https://lopaka.app/
 // 128x64 SSD1306 OLED Display 1.54": https://s.click.aliexpress.com/e/_DCYdWXb 
 // 128x64 SSD1306 OLED Display 0.96": https://s.click.aliexpress.com/e/_DCKdvnh
 // 128x64 SSD1306 OLED Display 2.42": https://s.click.aliexpress.com/e/_DFdMoTh
@@ -24,8 +25,8 @@ static const unsigned char image_Bluetooth_Idle_5x8_bits[] U8X8_PROGMEM = {0x04,
 static const unsigned char image_Volup_8x6_bits[] U8X8_PROGMEM = {0x48,0x8c,0xaf,0xaf,0x8c,0x48};
 static const unsigned char image_Alert_9x8_bits[] U8X8_PROGMEM = {0x10,0x00,0x38,0x00,0x28,0x00,0x6c,0x00,0x6c,0x00,0xfe,0x00,0xee,0x00,0xff,0x01};
 
-int progress = 0;
-char buffer[20];
+int progress = 0; // progress of the progressbar
+char buffer[32]; // helper buffer to construct a string to be displayed
 
 void setup(void) {
   u8g2.begin(); // start the u8g2 library
@@ -35,14 +36,12 @@ void loop(void) {
   u8g2.clearBuffer();					// clear the internal memory
 
   // code from https://lopaka.app/
-  u8g2.setBitmapMode(1);
-  u8g2.drawFrame(12, 21, 104, 20);
-  // progress bar fill
-  u8g2.drawBox(14, 23, progress, 16);
-  u8g2.setFont(u8g2_font_helvB08_tr);
-  sprintf(buffer, "Progress: %d%%", progress);
-  u8g2.drawStr(33, 53, buffer);
-  
+	u8g2.setBitmapMode(1);
+	u8g2.drawFrame(12, 21, 104, 20);
+	u8g2.drawBox(14, 23, progress, 16); // draw the progressbar fill
+	u8g2.setFont(u8g2_font_helvB08_tr);
+	sprintf(buffer, "Progress: %d%%", progress); // construct a string with the progress variable
+	u8g2.drawStr(33, 53, buffer); // display the string
 	u8g2.setFont(u8g2_font_haxrcorp4089_tr);
 	u8g2.drawStr(0, 7, "Progress Bar Screen");
 	u8g2.drawLine(0, 9, 127, 9);
@@ -53,7 +52,12 @@ void loop(void) {
 
 
   u8g2.sendBuffer();					// transfer internal memory to the display
-  //delay(1000);  // one second delay, but we are only displaying a static image, so it makes no difference
-
-  progress = (progress + 1) % 101;
+  
+  // increase the progress value to go over 0-100
+	progress = progress + 1;
+	if (progress > 100) {
+		progress = 0;
+	}
 }
+
+
