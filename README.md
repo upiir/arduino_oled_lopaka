@@ -37,7 +37,8 @@ This video is sponsored by PCBWay - if you use this link, you can get 10 PCBs fo
 
 Small Animation:
 
-![Uploading arduino_oled_lopaka_animation.gif…]()
+![arduino_oled_lopaka_animation](https://github.com/upiir/arduino_oled_lopaka/assets/117754156/43b7d45f-9148-436a-ad52-acaf294e8682)
+
 
 
 
